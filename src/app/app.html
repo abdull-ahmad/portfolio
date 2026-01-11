@@ -1,1 +1,158 @@
-<h1 class="text-4xl font-bold">Welcome to Portfolio</h1>
+<div
+    class="min-h-screen bg-background font-sans text-foreground selection:bg-primary selection:text-primary-foreground relative overflow-x-hidden">
+    <!-- Cursor Follower -->
+    <div class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+        [style.background]="'radial-gradient(600px at ' + cursorX() + 'px ' + cursorY() + 'px, rgba(244, 63, 94, 0.15), transparent 80%)'">
+    </div>
+
+    <!-- Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div class="container mx-auto flex h-14 max-w-screen-2xl items-center justify-between px-4">
+            <!-- Logo/Title - Always visible -->
+            <a class="flex items-center space-x-2 mr-4" href="/">
+                <span class="font-bold text-xl tracking-tight text-primary">Ayyat's Artcade</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-2">
+                <a hlmBtn variant="ghost" href="/">Home</a>
+                <a hlmBtn variant="ghost" href="#services">Services</a>
+                <a hlmBtn variant="ghost" href="#gallery">Gallery</a>
+                <a hlmBtn variant="ghost" href="#contact">Contact</a>
+            </nav>
+
+            <!-- Shop Button -->
+            <div class="flex items-center space-x-2">
+                <button hlmBtn variant="outline" size="sm"
+                    onclick="window.open('https://instagram.com/ayyats_artcade', '_blank')">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 relative z-10">
+        <!-- Hero Section -->
+        <section class="container mx-auto grid items-center gap-6 pb-4 pt-4 md:py-8 lg:grid-cols-2 lg:gap-10 px-4">
+            <div class="flex flex-col items-start gap-4">
+                <h1
+                    class="text-3xl font-extrabold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
+                    Ayyat's Artcade, <br class="hidden sm:inline" />
+                    Tailored for You
+                </h1>
+                <p class="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
+                    Discover our collection of custom gift boxes, artisan bouquets, and charming stickers. Made with
+                    love, just for you.
+                </p>
+                <div class="flex gap-4">
+                    <button hlmBtn size="lg">Explore Collection</button>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden rounded-xl border bg-muted/50 shadow-xl">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop"
+                    alt="Handcrafted Gifts"
+                    class="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section id="services" class="container mx-auto py-8 md:py-12 lg:py-16 px-4 bg-secondary/20 rounded-3xl my-8">
+            <div class="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+                <h2 class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-6xl">Our Creations</h2>
+                <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                    From everlasting flowers to custom gifts, we bring your ideas to life.
+                </p>
+            </div>
+            <div
+                class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-2 lg:grid-cols-4 mt-8">
+                @for (service of services; track service.title) {
+                <div hlmCard
+                    class="overflow-hidden border-none shadow-md transition-all hover:shadow-lg hover:-translate-y-1">
+                    <div hlmCardHeader class="p-0">
+                        <div class="aspect-[4/3] w-full overflow-hidden">
+                            <img [src]="service.image" [alt]="service.title"
+                                class="h-full w-full object-cover transition-transform duration-300 hover:scale-110" />
+                        </div>
+                    </div>
+                    <div hlmCardContent class="p-6">
+                        <h3 hlmCardTitle class="mb-2 text-xl">{{ service.title }}</h3>
+                        <p hlmCardDescription>{{ service.description }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- Gallery Carousel -->
+        <section id="gallery" class="container mx-auto py-6 md:py-10 lg:py-12 px-4">
+            <div class="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center mb-8">
+                <h2 class="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Gallery</h2>
+                <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+                    A glimpse into our world of crafting.
+                </p>
+            </div>
+
+            <div class="flex justify-center w-full">
+                <hlm-carousel class="w-full max-w-3xl" opts="{ align: 'start' }">
+                    <hlm-carousel-content>
+                        @for (image of galleryImages; track image) {
+                        <hlm-carousel-item class="md:basis-1/2 lg:basis-1/3">
+                            <div class="p-1">
+                                <div hlmCard class="overflow-hidden border-none shadow-sm">
+                                    <div hlmAspectRatio="1/1">
+                                        <img [src]="image" alt="Gallery Image" class="h-full w-full object-cover" />
+                                    </div>
+                                </div>
+                            </div>
+                        </hlm-carousel-item>
+                        }
+                    </hlm-carousel-content>
+                    <button hlmCarouselPrevious></button>
+                    <button hlmCarouselNext></button>
+                </hlm-carousel>
+            </div>
+        </section>
+
+        <!-- Customer Inquiry Form -->
+        <section id="contact" class="container mx-auto py-8 md:py-12 lg:py-16 px-4 max-w-2xl">
+            <div hlmCard class="border-none shadow-lg bg-card">
+                <div hlmCardHeader class="text-center">
+                    <h2 hlmCardTitle class="text-3xl font-bold">Get in Touch</h2>
+                    <p hlmCardDescription>Have a custom request? Let us know!</p>
+                </div>
+                <div hlmCardContent class="grid gap-4">
+                    <div class="grid gap-2">
+                        <label hlmLabel for="name">Name</label>
+                        <input hlmInput id="name" placeholder="Your Name" />
+                    </div>
+                    <div class="grid gap-2">
+                        <label hlmLabel for="email">Email</label>
+                        <input hlmInput id="email" type="email" placeholder="m@example.com" />
+                    </div>
+                    <div class="grid gap-2">
+                        <label hlmLabel for="message">Message</label>
+                        <textarea hlmInput hlmTextarea id="message" placeholder="Tell us about your idea..."
+                            class="min-h-[120px]"></textarea>
+                    </div>
+                </div>
+                <div hlmCardFooter class="justify-end">
+                    <button hlmBtn class="w-full sm:w-auto" (click)="submitForm()">Submit</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t py-6 md:py-0 relative z-10">
+        <div class="container mx-auto flex flex-col items-center justify-center gap-2 md:h-24 px-4">
+            <p class="text-sm text-muted-foreground">
+                Follow us on
+            </p>
+            <a href="https://instagram.com/ayyats_artcade" target="_blank" rel="noopener noreferrer"
+                class="text-muted-foreground hover:text-primary transition-colors">
+                <ng-icon name="lucideInstagram" class="text-xl"></ng-icon>
+            </a>
+        </div>
+    </footer>
+    <hlm-toaster />
+</div>
