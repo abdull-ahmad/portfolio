@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideIcons } from '@ng-icons/core';
-import { lucideInstagram } from '@ng-icons/lucide';
+import { lucideInstagram, lucideMoon, lucideSun, lucideMonitor } from '@ng-icons/lucide';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    provideIcons({ lucideInstagram }),
+    provideIcons({ lucideInstagram, lucideSun, lucideMoon, lucideMonitor }),
   ]
 };

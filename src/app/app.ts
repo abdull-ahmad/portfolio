@@ -8,6 +8,7 @@ import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { toast } from 'ngx-sonner';
 import { NgIconsModule } from '@ng-icons/core';
+import { ThemeToggleComponent } from './shared/components/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { NgIconsModule } from '@ng-icons/core';
     HlmCarouselImports,
     HlmToasterImports,
     NgIconsModule,
+    ThemeToggleComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
